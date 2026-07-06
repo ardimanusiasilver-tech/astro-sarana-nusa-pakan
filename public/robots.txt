@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://sarananusapakan.com/sitemap.xml
+
+

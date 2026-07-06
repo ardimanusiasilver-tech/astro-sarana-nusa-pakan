@@ -3,7 +3,7 @@ title: "Peran Canola Meal dalam Meningkatkan Produksi Susu Sapi Perah"
 description: "Suplementasi bungkil canola terbukti meningkatkan volume dan kualitas susu. Pelajari mekanisme dan dosis optimal untuk peternakan sapi perah Anda."
 date: 2025-06-10
 category: "Sapi Perah"
-image: "/artikel/artikel2.png"
+image: "/artikel/canola-sapi-perah.png"
 imageAlt: "Sapi perah dengan suplementasi canola meal"
 featured: false
 ---

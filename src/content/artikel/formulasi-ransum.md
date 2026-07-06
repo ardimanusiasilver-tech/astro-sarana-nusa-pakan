@@ -3,7 +3,7 @@ title: "Panduan Formulasi Ransum Ternak Berbasis Canola Meal untuk Hasil Optimal
 description: "Langkah praktis menyusun ransum seimbang dengan canola meal sebagai sumber protein utama, dilengkapi tabel kebutuhan gizi per jenis ternak."
 date: 2025-06-01
 category: "Formulasi"
-image: "/artikel/artikel4.png"
+image: "/artikel/formulasi-ransum.png"
 imageAlt: "Formulasi ransum ternak berbasis canola meal"
 featured: false
 ---

@@ -3,7 +3,7 @@ title: "Canola Meal vs Soybean Meal: Mana yang Tepat untuk Ransum Ternak Anda?"
 description: "Perbandingan mendalam profil asam amino, nilai energi, dan biaya efisiensi canola meal vs soybean meal untuk optimasi formulasi pakan ternak."
 date: 2025-06-25
 category: "Nutrisi Ternak"
-image: "/artikel/artikel3.png"
+image: "/artikel/canola-vs-soybean.png"
 imageAlt: "Perbandingan canola meal dan soybean meal"
 featured: false
 ---

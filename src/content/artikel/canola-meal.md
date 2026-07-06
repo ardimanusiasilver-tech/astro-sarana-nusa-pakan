@@ -3,7 +3,7 @@ title: "Mengenal Canola Meal: Sumber Protein Premium dan Energi untuk Pakan Tern
 description: "Canola meal adalah hasil samping ekstraksi minyak biji canola yang kaya protein 35–40% dan kaya asam amino."
 date: 2026-07-03
 category: "Bahan Baku"
-image: "/artikel/artikel1.png"
+image: "/artikel/canola-meal.png"
 imageAlt: "Canola meal berkualitas premium"
 featured: true
 ---
