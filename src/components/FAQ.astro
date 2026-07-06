@@ -1,7 +1,8 @@
 ---
 const faqs = [
   {
-    question: "Berapa minimum order quantity (MOQ) untuk bahan pakan Sarana Nusa Pakan?",
+    question:
+      "Berapa minimum order quantity (MOQ) untuk bahan pakan Sarana Nusa Pakan?",
     answer:
       "MOQ bervariasi tergantung jenis bahan dan rute pengiriman. Untuk canola meal, umumnya kami melayani mulai dari volume kontainer penuh. Hubungi tim komersial kami untuk penawaran yang disesuaikan dengan kebutuhan spesifik Anda.",
   },
@@ -11,36 +12,43 @@ const faqs = [
       "Setiap batch melewati checkpoint QC terstruktur mulai dari verifikasi pemasok, pengujian laboratorium untuk parameter protein, kadar air, lemak, dan abu, hingga inspeksi akhir sebelum muat kontainer. Sertifikat analisis (CoA) disertakan di setiap pengiriman.",
   },
   {
-    question: "Negara atau wilayah mana saja yang dilayani untuk pengiriman?",
+    question: "Wilayah mana saja yang dilayani untuk pengiriman?",
     answer:
-      "Kami melayani pengiriman lintas batas ke berbagai negara di Asia Tenggara dan sekitarnya, didukung jaringan pemasok multi-negara dan koordinasi logistik freight internasional end-to-end.",
+      "Kami melayani pengiriman ke seluruh wilayah Indonesia melalui layanan ekspedisi end-to-end.",
   },
   {
-    question: "Apakah tersedia dokumentasi lengkap untuk keperluan bea cukai dan audit?",
+    question:
+      "Apakah tersedia dokumentasi lengkap untuk keperluan bea cukai dan audit?",
     answer:
       "Ya. Setiap pengiriman disertai dokumentasi lengkap — invoice, packing list, certificate of analysis, dan dokumen asal barang — untuk mendukung proses bea cukai dan kebutuhan audit internal pelanggan korporat.",
   },
   {
     question: "Bagaimana cara memulai kerja sama dengan Sarana Nusa Pakan?",
     answer:
-      "Hubungi tim kami melalui formulir kontak atau email desk@sarananusapakan.sg dengan kebutuhan volume dan spesifikasi Anda. Tim komersial akan menindaklanjuti dengan penawaran dan sampel jika diperlukan.",
+      "Hubungi tim kami melalui formulir kontak atau email sarananusapakan@gmail.com dengan kebutuhan volume dan spesifikasi Anda. Tim komersial akan menindaklanjuti dengan penawaran dan sampel jika diperlukan.",
   },
 ];
 ---
 
-<section
-  id="faq"
-  class="relative py-32 px-8 md:px-24 bg-[#faf9f5]"
->
+<section id="faq" class="relative py-32 px-8 md:px-24 bg-[#faf9f5]">
   <div class="max-w-5xl mx-auto space-y-16 relative z-10">
     <div class="space-y-3 text-center md:text-left">
-      <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block">Pertanyaan Umum</span>
-      <h2 class="text-4xl font-black text-[#043e2b] tracking-tighter leading-none">
-        Yang Sering <br class="md:hidden" /><span class="font-light text-[#232c28]">Ditanyakan</span>
+      <span
+        class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block"
+        >Pertanyaan Umum</span
+      >
+      <h2
+        class="text-4xl font-black text-[#043e2b] tracking-tighter leading-none"
+      >
+        Yang Sering <br class="md:hidden" /><span
+          class="font-light text-[#232c28]">Ditanyakan</span
+        >
       </h2>
     </div>
 
-    <div class="divide-y divide-[#043e2b]/10 border-t border-b border-[#043e2b]/10">
+    <div
+      class="divide-y divide-[#043e2b]/10 border-t border-b border-[#043e2b]/10"
+    >
       {
         faqs.map((faq, i) => (
           <div class="faq-item">
@@ -55,11 +63,19 @@ const faqs = [
               </span>
               <span class="faq-icon shrink-0 w-8 h-8 border border-[#043e2b]/15 flex items-center justify-center transition-transform duration-500 ease-spring">
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                  <path d="M7 1v12M1 7h12" stroke="#043e2b" stroke-width="1.5" stroke-linecap="round" />
+                  <path
+                    d="M7 1v12M1 7h12"
+                    stroke="#043e2b"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
                 </svg>
               </span>
             </button>
-            <div id={`faq-panel-${i}`} class="faq-panel grid grid-rows-[0fr] transition-all duration-500 ease-spring">
+            <div
+              id={`faq-panel-${i}`}
+              class="faq-panel grid grid-rows-[0fr] transition-all duration-500 ease-spring"
+            >
               <div class="overflow-hidden">
                 <p class="text-xs md:text-sm text-[#232c28]/70 font-light leading-relaxed pb-6 max-w-2xl">
                   {faq.answer}
@@ -88,7 +104,10 @@ const faqs = [
 
         trigger.setAttribute("aria-expanded", String(!isOpen));
         panel.style.gridTemplateRows = isOpen ? "0fr" : "1fr";
-        icon?.style.setProperty("transform", isOpen ? "rotate(0deg)" : "rotate(45deg)");
+        icon?.style.setProperty(
+          "transform",
+          isOpen ? "rotate(0deg)" : "rotate(45deg)",
+        );
       });
     });
   }
