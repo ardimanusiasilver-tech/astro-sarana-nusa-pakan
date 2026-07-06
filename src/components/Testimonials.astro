@@ -1,0 +1,85 @@
+---
+const testimonials = [
+  {
+    quote:
+      "Konsistensi mutu jadi alasan utama kami bertahan dengan Sarana Nusa Pakan. Setiap batch canola meal yang datang selalu sesuai spesifikasi yang dijanjikan di awal.",
+    name: "Budi Santoso",
+    role: "Kepala Pengadaan",
+    company: "Peternakan Unggas Mitra Jaya",
+    initials: "BS",
+  },
+  {
+    quote:
+      "Lead time pengiriman mereka jauh lebih dapat diandalkan dibanding pemasok sebelumnya. Tim mereka responsif kalau ada perubahan volume mendadak.",
+    name: "Sarah Wijaya",
+    role: "Direktur Operasional",
+    company: "Tambak Sejahtera Akuakultur",
+    initials: "SW",
+  },
+  {
+    quote:
+      "Dokumentasi QC yang lengkap di setiap pengiriman sangat membantu proses audit internal kami. Ini yang bikin kami percaya untuk kontrak jangka panjang.",
+    name: "Ahmad Fauzi",
+    role: "Manajer Rantai Pasokan",
+    company: "Feed Mill Nusantara",
+    initials: "AF",
+  },
+];
+---
+
+<section
+  id="testimonials"
+  class="py-32 px-8 md:px-24 bg-[#f5f4f0] border-y border-[#043e2b]/5"
+>
+  <div class="max-w-7xl mx-auto space-y-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-7 space-y-3">
+        <span
+          class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block"
+          >Kepercayaan Klien</span
+        >
+        <h2
+          class="text-4xl font-black text-[#043e2b] tracking-tighter leading-none"
+        >
+          Dipercaya oleh <br /><span class="font-light text-[#232c28]"
+            >Mitra Industri Kami</span
+          >
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        testimonials.map((t) => (
+          <div class="bg-[#faf9f5] p-8 border border-[#043e2b]/8 flex flex-col justify-between min-h-[280px] transition-all duration-700 ease-spring hover:border-[#15803d]/30 hover:-translate-y-1">
+            <div class="space-y-4">
+              <svg
+                class="w-7 h-7 text-[#15803d]/40"
+                fill="currentColor"
+                viewBox="0 0 32 32"
+              >
+                <path d="M9.3 22.6c-1.7 0-3.1-.6-4.2-1.8-1.1-1.2-1.6-2.7-1.6-4.5 0-2 .6-4 1.8-6 1.2-2 3-3.8 5.3-5.3l2 2.6c-1.7 1.2-3 2.4-3.8 3.6-.8 1.2-1.3 2.3-1.4 3.4.4-.2.9-.3 1.5-.3 1.3 0 2.4.4 3.3 1.3.9.9 1.4 2 1.4 3.4 0 1.4-.5 2.6-1.5 3.5-1 .9-2.2 1.3-3.6 1.3zm14 0c-1.7 0-3.1-.6-4.2-1.8-1.1-1.2-1.6-2.7-1.6-4.5 0-2 .6-4 1.8-6 1.2-2 3-3.8 5.3-5.3l2 2.6c-1.7 1.2-3 2.4-3.8 3.6-.8 1.2-1.3 2.3-1.4 3.4.4-.2.9-.3 1.5-.3 1.3 0 2.4.4 3.3 1.3.9.9 1.4 2 1.4 3.4 0 1.4-.5 2.6-1.5 3.5-1 .9-2.2 1.3-3.6 1.3z" />
+              </svg>
+              <p class="text-sm text-[#232c28]/75 font-light leading-relaxed">
+                {t.quote}
+              </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-[#043e2b]/10 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#043e2b] text-[#faf9f5] text-xs font-bold flex items-center justify-center shrink-0">
+                {t.initials}
+              </div>
+              <div class="space-y-0.5">
+                <h5 class="text-xs font-bold text-[#043e2b] tracking-tight">
+                  {t.name}
+                </h5>
+                <p class="text-[10px] text-[#232c28]/55 font-light">
+                  {t.role} — {t.company}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

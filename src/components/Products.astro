@@ -1,0 +1,55 @@
+---
+import { products } from "../data/products";
+
+const previewProducts = products.slice(0, 2);
+---
+
+<section id="products" class="py-24 px-8 md:px-24 bg-[#faf9f5]">
+  <div class="max-w-7xl mx-auto space-y-10">
+    <div class="space-y-3">
+      <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block">
+        Katalog Produk
+      </span>
+      <h2 class="text-4xl font-black text-[#043e2b] tracking-tighter leading-none">
+        Pilih Produk <br />
+        <span class="font-light text-[#232c28]">Kebutuhan Pakan Anda</span>
+      </h2>
+      <p class="max-w-2xl text-sm text-[#232c28]/75 leading-relaxed">
+        Temukan pilihan bahan pakan yang kami tawarkan. Dua produk unggulan ditampilkan untuk referensi cepat, lalu lihat semua detail produk di halaman khusus.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        previewProducts.map((product) => (
+          <div class="group overflow-hidden rounded-[26px] border border-[#043e2b]/10 bg-white shadow-[0_20px_50px_-30px_rgba(4,62,43,0.25)] flex flex-col h-full">
+            <div class="overflow-hidden bg-[#f7f7f2]">
+              <img
+                src={product.image}
+                alt={product.title}
+                class="w-full h-[320px] object-cover transition-transform duration-700 ease-spring group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-xl font-bold text-[#043e2b] tracking-tight">{product.title}</h3>
+                <span class="font-mono text-xs text-[#15803d]">/ {String(product.index).padStart(2, "0")}</span>
+              </div>
+              <p class="mt-4 text-sm text-[#232c28]/75 leading-relaxed">{product.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="flex justify-center pt-4">
+      <a
+        href="/produk"
+        class="inline-flex items-center justify-center rounded-full border border-[#043e2b]/10 bg-[#043e2b] px-8 py-3 text-xs font-bold uppercase tracking-[0.25em] text-[#faf9f5] transition-colors duration-300 hover:bg-[#15803d]"
+      >
+        Lihat Semua Produk
+      </a>
+    </div>
+  </div>
+</section>

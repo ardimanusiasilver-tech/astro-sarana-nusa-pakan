@@ -1,0 +1,281 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage = "/logo/logo.png" } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO dasar: ini yang tidak ada di versi lama karena konten di-inject client-side -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon ico-->
+
+    <link rel="icon" type="image/png" href="/logo/logo.png" />
+    <link rel="shortcut icon" type="image/png" href="/logo/logo.png" />
+    <link rel="apple-touch-icon" href="/logo/logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  </head>
+  <body
+    class="selection:bg-[#043e2b]/10 selection:text-[#043e2b] font-sans antialiased"
+  >
+    <slot />
+
+    <div
+      id="wa-chat-widget"
+      class="fixed bottom-5 right-5 z-50 flex flex-col items-end"
+    >
+      <div
+        id="wa-chat-box"
+        class="hidden mb-4 w-[280px] sm:w-[320px] bg-[#faf9f5] rounded-[28px] border border-[#043e2b]/10 shadow-[0_24px_80px_-30px_rgba(4,62,43,0.20)] overflow-hidden"
+      >
+        <div class="bg-[#043e2b] p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 bg-[#15803d] rounded-full flex items-center justify-center text-white"
+            >
+              <svg viewBox="0 0 448 512" fill="currentColor" class="w-5 h-5">
+                <path
+                  d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-sm">WhatsApp</h4>
+              <p class="text-white/80 text-[10px] font-light">
+                Tanya produk & order
+              </p>
+            </div>
+          </div>
+          <button
+            id="wa-chat-close"
+            class="text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 p-1.5 rounded-full"
+            aria-label="Tutup Chat"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="w-4 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div
+          class="p-4 bg-[#f5f4f0] min-h-[140px] max-h-[260px] overflow-y-auto flex flex-col gap-3"
+        >
+          <div
+            class="bg-white p-4 rounded-[24px] shadow-sm text-[13px] text-[#232c28] border border-[#043e2b]/5 max-w-[90%]"
+          >
+            Halo kak! Ada yang bisa kami bantu dengan produk pakan?
+          </div>
+          <div
+            class="bg-white p-4 rounded-[24px] shadow-sm text-[13px] text-[#232c28] border border-[#043e2b]/5 max-w-[95%] leading-relaxed"
+          >
+            Silakan pilih template atau ketik langsung untuk mulai chat.
+          </div>
+          <div class="flex flex-wrap gap-2 mt-2">
+            <button
+              type="button"
+              class="wa-template text-left text-[11px] bg-[#faf9f5] border border-[#043e2b]/10 text-[#043e2b] rounded-full px-3 py-1.5 hover:bg-[#e6f7eb] transition-colors duration-200"
+              >Halo, saya ingin konsultasi bahan pakan.</button
+            >
+            <button
+              type="button"
+              class="wa-template text-left text-[11px] bg-[#faf9f5] border border-[#043e2b]/10 text-[#043e2b] rounded-full px-3 py-1.5 hover:bg-[#e6f7eb] transition-colors duration-200"
+              >Butuh penawaran produk Canola Meal.</button
+            >
+            <button
+              type="button"
+              class="wa-template text-left text-[11px] bg-[#faf9f5] border border-[#043e2b]/10 text-[#043e2b] rounded-full px-3 py-1.5 hover:bg-[#e6f7eb] transition-colors duration-200"
+              >Apakah tersedia produk Canola Meal?</button
+            >
+          </div>
+        </div>
+
+        <div
+          class="p-3 bg-[#faf9f5] border-t border-[#043e2b]/10 flex flex-col gap-2.5"
+        >
+          <textarea
+            id="wa-chat-message"
+            class="w-full text-[13px] text-[#232c28] bg-white border border-[#043e2b]/10 rounded-2xl p-3 focus:outline-none focus:border-[#15803d] focus:ring-1 focus:ring-[#15803d]/10 resize-none transition-all placeholder:text-[#7c8a82]"
+            rows="2"
+            placeholder="Ketik pesan Anda..."></textarea>
+          <button
+            id="wa-chat-send"
+            type="button"
+            class="w-full flex items-center justify-center gap-2 bg-[#043e2b] hover:bg-[#15803d] text-white font-bold text-sm py-2.5 rounded-2xl transition-all duration-300 shadow-[0_12px_30px_-12px_rgba(4,62,43,0.35)] active:scale-[0.98]"
+            >Kirim Pesan</button
+          >
+        </div>
+      </div>
+
+      <button
+        id="wa-chat-toggle"
+        aria-label="Buka Chat"
+        class="w-14 h-14 bg-[#043e2b] text-white rounded-full flex items-center justify-center shadow-[0_12px_30px_-8px_rgba(4,62,43,0.35)] hover:bg-[#15803d] transition-all duration-300"
+      >
+        <svg viewBox="0 0 448 512" fill="currentColor" class="w-5 h-5">
+          <path
+            d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <script>
+      function initWhatsAppWidget() {
+        const widget = document.getElementById("wa-chat-widget");
+        const box = document.getElementById("wa-chat-box");
+        const toggle = document.getElementById("wa-chat-toggle");
+        const closeBtn = document.getElementById("wa-chat-close");
+        const sendBtn = document.getElementById("wa-chat-send");
+        const messageInput = document.getElementById(
+          "wa-chat-message",
+        ) as HTMLTextAreaElement | null;
+        const templates =
+          document.querySelectorAll<HTMLButtonElement>(".wa-template");
+        const number = "6281214147039";
+
+        if (
+          !widget ||
+          !box ||
+          !toggle ||
+          !closeBtn ||
+          !sendBtn ||
+          !messageInput
+        )
+          return;
+
+        const openWidget = () => {
+          box.classList.remove("hidden");
+        };
+
+        const closeWidget = () => {
+          box.classList.add("hidden");
+        };
+
+        toggle.addEventListener("click", openWidget);
+        closeBtn.addEventListener("click", closeWidget);
+
+        templates.forEach((template) => {
+          template.addEventListener("click", () => {
+            messageInput.value = template.textContent?.trim() || "";
+            messageInput.focus();
+          });
+        });
+
+        const sendMessage = () => {
+          const text =
+            messageInput.value.trim() ||
+            "Halo, saya tertarik untuk berdiskusi tentang bahan pakan.";
+          const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+          window.open(url, "_blank");
+          closeWidget();
+          messageInput.value = "";
+        };
+
+        sendBtn.addEventListener("click", sendMessage);
+      }
+
+      initWhatsAppWidget();
+
+      // ── Magnetic CTA buttons (dipakai di Header & Hero) ──
+      document.addEventListener("mousemove", (e) => {
+        document
+          .querySelectorAll<HTMLElement>(".magnetic-btn")
+          .forEach((btn) => {
+            const rect = btn.getBoundingClientRect();
+            if (
+              e.clientX >= rect.left &&
+              e.clientX <= rect.right &&
+              e.clientY >= rect.top &&
+              e.clientY <= rect.bottom
+            ) {
+              const cx = e.clientX - rect.left - rect.width / 2;
+              const cy = e.clientY - rect.top - rect.height / 2;
+              const x = Math.max(-8, Math.min(8, cx * 0.15));
+              const y = Math.max(-8, Math.min(8, cy * 0.15));
+              btn.style.transform = `translate(${x}px, ${y}px)`;
+            } else {
+              btn.style.transform = "translate(0px, 0px)";
+            }
+          });
+      });
+
+      document.addEventListener("mouseleave", () => {
+        document
+          .querySelectorAll<HTMLElement>(".magnetic-btn")
+          .forEach((btn) => {
+            btn.style.transform = "translate(0px, 0px)";
+          });
+      });
+
+      // ── Stats counter (dipakai di elemen [data-count-to], mis. di Matrix/About) ──
+      function initStatsCounter() {
+        const els = document.querySelectorAll<HTMLElement>("[data-count-to]");
+        if (!els.length) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              const end = parseInt(el.dataset.countTo ?? "0", 10);
+              const dur = 1400;
+              const step = 16;
+              const steps = dur / step;
+              let current = 0;
+              const inc = end / steps;
+
+              const timer = setInterval(() => {
+                current = Math.min(current + inc, end);
+                el.textContent = Math.floor(current).toLocaleString();
+                if (current >= end) clearInterval(timer);
+              }, step);
+              observer.unobserve(el);
+            });
+          },
+          { threshold: 0.4 },
+        );
+
+        els.forEach((el) => observer.observe(el));
+      }
+
+      initStatsCounter();
+    </script>
+  </body>
+</html>

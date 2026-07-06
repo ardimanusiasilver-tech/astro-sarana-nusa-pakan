@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { products } from "../../data/products";
+---
+
+<Layout
+  title="Daftar Produk — Sarana Nusa Pakan"
+  description="Lihat semua produk bahan pakan unggulan Sarana Nusa Pakan, termasuk canola meal berkualitas untuk kebutuhan ternak dan ruminansia."
+>
+  <Header />
+
+  <main class="pt-24">
+    <section class="px-8 md:px-24 py-20 md:py-28 max-w-7xl mx-auto space-y-12">
+      <div class="space-y-4">
+        <span
+          class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block"
+        >
+          Produk
+        </span>
+        <div class="space-y-3 max-w-3xl">
+          <h1
+            class="text-4xl md:text-5xl font-black text-[#043e2b] tracking-tighter leading-none"
+          >
+            Daftar Produk Bahan Pakan
+            <br />
+            <span class="font-light text-[#232c28]"
+              >Untuk kebutuhan pakan yang lebih tepat</span
+            >
+          </h1>
+          <p class="text-sm text-[#232c28]/75 leading-relaxed">
+            Temukan produk unggulan kami dengan deskripsi singkat dan fitur yang
+            mudah dipahami. Halaman ini menampilkan seluruh produk yang kami
+            tawarkan, disusun rapi agar Anda bisa memilih dengan cepat.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        {
+          products.map((product) => (
+            <article class="group rounded-[28px] border border-[#043e2b]/10 bg-white shadow-[0_24px_60px_-35px_rgba(4,62,43,0.2)] overflow-hidden transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_30px_80px_-40px_rgba(4,62,43,0.25)]">
+              <div class="h-72 overflow-hidden bg-[#f5f4f0]">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  class="w-full h-full object-cover transition-transform duration-700 ease-spring group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-7">
+                <div class="flex items-center justify-between gap-4">
+                  <h2 class="text-2xl font-bold text-[#043e2b] tracking-tight">
+                    {product.title}
+                  </h2>
+                  <span class="font-mono text-xs text-[#15803d]">
+                    / {String(product.index).padStart(2, "0")}
+                  </span>
+                </div>
+                <p class="mt-4 text-sm text-[#232c28]/75 leading-relaxed">
+                  {product.desc}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

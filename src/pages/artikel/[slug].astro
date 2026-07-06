@@ -1,0 +1,191 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("artikel");
+  return articles.map((article: CollectionEntry<"artikel">) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: CollectionEntry<"artikel">;
+}
+
+const { article } = Astro.props;
+const { title, description, date, category, image, imageAlt, author } =
+  article.data;
+const { Content } = await article.render();
+
+const formattedDate = date.toLocaleDateString("id-ID", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+// Artikel terkait: ambil sisanya, maksimal 3
+const allArticles = await getCollection("artikel");
+const relatedArticles = allArticles
+  .filter((a: CollectionEntry<"artikel">) => a.slug !== article.slug)
+  .slice(0, 3);
+---
+
+<Layout
+  title={`${title} — Sarana Nusa Pakan`}
+  description={description}
+  ogImage={image}
+>
+  <Header />
+
+  <main class="pt-24">
+    <!-- Article Header -->
+    <section
+      class="px-8 md:px-24 py-16 md:py-24 bg-[#f5f4f0] border-b border-[#043e2b]/5"
+    >
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href="/artikel"
+            class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[#232c28] hover:text-[#15803d] transition-colors duration-300"
+          >
+            &larr; Kembali ke Artikel
+          </a>
+          <button
+            id="copy-article-link"
+            type="button"
+            class="inline-flex items-center justify-center rounded-full border border-[#043e2b]/10 bg-[#faf9f5] px-4 py-2 text-[10px] font-bold tracking-[0.25em] uppercase text-[#043e2b] transition-colors duration-300 hover:bg-[#e2e8f0]"
+          >
+            Salin Tautan
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span
+            class="bg-[#043e2b] text-[#faf9f5] text-[9px] font-bold tracking-widest uppercase px-3 py-1.5"
+          >
+            {category}
+          </span>
+          <span
+            class="text-[10px] font-mono text-[#15803d] uppercase tracking-wider"
+            >{formattedDate}</span
+          >
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl font-black text-[#043e2b] tracking-tighter leading-tight"
+        >
+          {title}
+        </h1>
+
+        <p class="text-sm text-[#232c28]/60 font-light">Oleh {author}</p>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="px-8 md:px-24 -mt-12 md:-mt-20 relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <div
+          class="h-64 md:h-[460px] rounded-2xl overflow-hidden bg-[#f5f4f0] border border-[#043e2b]/8 shadow-[0_24px_60px_-15px_rgba(4,62,43,0.25)]"
+        >
+          <img src={image} alt={imageAlt} class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Body -->
+    <section class="px-8 md:px-24 py-16 md:py-20">
+      <article
+        class="max-w-3xl mx-auto space-y-6 text-sm md:text-base text-[#232c28]/80 font-light leading-relaxed
+          [&>h2]:text-2xl [&>h2]:font-black [&>h2]:text-[#043e2b] [&>h2]:tracking-tight [&>h2]:pt-6
+          [&>h3]:text-lg [&>h3]:font-bold [&>h3]:text-[#043e2b] [&>h3]:pt-4
+          [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:space-y-2
+          [&>p]:leading-relaxed"
+      >
+        <Content />
+      </article>
+    </section>
+
+    <section class="px-8 md:px-24 pb-20">
+      <div
+        class="max-w-3xl mx-auto bg-[#043e2b] p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 rounded-none md:rounded-2xl border border-[#043e2b]/10 shadow-[0_24px_60px_-15px_rgba(4,62,43,0.25)]"
+      >
+        <div class="space-y-1">
+          <h3 class="text-lg font-black text-[#faf9f5] tracking-tight">
+            Butuh konsultasi formulasi pakan?
+          </h3>
+          <p class="text-xs text-[#faf9f5]/60 font-light">
+            Tim kami siap membantu kebutuhan bahan pakan korporat Anda.
+          </p>
+        </div>
+        <a
+          href="https://wa.me/6281214147039?text=Halo%2C%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20bahan%20pakan."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="magnetic-btn inline-flex items-center justify-center shrink-0 rounded-full px-6 py-3 bg-[#faf9f5] text-[#043e2b] text-xs font-bold tracking-widest uppercase transition-transform duration-700 ease-spring"
+        >
+          Hubungi Kami
+        </a>
+      </div>
+    </section>
+
+    {
+      relatedArticles.length > 0 && (
+        <section class="px-8 md:px-24 pb-24 bg-[#faf9f5]">
+          <div class="max-w-5xl mx-auto space-y-8">
+            <h3 class="text-xl font-black text-[#043e2b] tracking-tight">
+              Artikel Lainnya
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {relatedArticles.map((related: CollectionEntry<"artikel">) => (
+                <a
+                  href={`/artikel/${related.slug}`}
+                  class="group flex flex-col border border-[#043e2b]/8 overflow-hidden hover:border-[#15803d]/30 transition-colors duration-500"
+                >
+                  <div class="h-36 overflow-hidden bg-[#f5f4f0]">
+                    <img
+                      src={related.data.image}
+                      alt={related.data.imageAlt}
+                      class="w-full h-full object-cover transition-transform duration-700 ease-spring group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="bg-[#f5f4f0] p-5 space-y-2">
+                    <span class="text-[9px] font-mono text-[#15803d] uppercase tracking-wider block">
+                      {related.data.category}
+                    </span>
+                    <h4 class="text-sm font-bold text-[#043e2b] tracking-tight leading-snug group-hover:text-[#15803d] transition-colors duration-300">
+                      {related.data.title}
+                    </h4>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+    <script>
+      const copyButton = document.getElementById("copy-article-link");
+      if (copyButton) {
+        copyButton.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyButton.textContent = "Tersalin";
+            setTimeout(() => {
+              copyButton.textContent = "Salin Tautan";
+            }, 2000);
+          } catch (error) {
+            copyButton.textContent = "Gagal Salin";
+            console.error(error);
+          }
+        });
+      }
+    </script>
+  </main>
+
+  <Footer />
+</Layout>

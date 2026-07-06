@@ -1,0 +1,264 @@
+---
+const navLinks = [
+  { href: "#about", label: "Tentang Kami" },
+  { href: "#products", label: "Produk" },
+  { href: "#matrix", label: "Pilar Utama" },
+  { href: "#education", label: "Edukasi" },
+  { href: "#faq", label: "FAQ" },
+];
+const isHome = Astro.url.pathname === "/";
+---
+
+<header
+  class="fixed top-0 left-0 w-full z-50 bg-[#faf9f5]/80 backdrop-blur-md border-b border-[#043e2b]/5 transition-all duration-700 ease-spring"
+>
+  <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
+    <a href="/" class="flex items-center space-x-4 group">
+      <img
+        src="/logo/logo.png"
+        alt="Sarana Nusa Pakan logo"
+        class="h-10 w-auto"
+        width="40"
+        height="40"
+      />
+      <div class="hidden md:flex flex-col">
+        <span
+          class="text-xl font-black tracking-tighter text-[#043e2b] uppercase"
+          >Sarana Nusa Pakan</span
+        >
+        <span
+          class="text-[9px] uppercase tracking-[0.25em] text-[#15803d] font-bold"
+          >Canola Meal</span
+        >
+      </div>
+    </a>
+
+    <nav class="hidden md:flex items-center space-x-10">
+      {
+        navLinks.map((link) => (
+          <a
+            href={isHome ? link.href : `/${link.href}`}
+            class="relative py-2 text-xs font-bold tracking-widest uppercase text-[#232c28]/80 hover:text-[#043e2b] transition-colors duration-300 group"
+          >
+            <span>{link.label}</span>
+            <span class="absolute bottom-0 left-1/2 w-0 h-[1.5px] bg-[#15803d] transition-all duration-700 ease-spring group-hover:w-full group-hover:left-0" />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center">
+      <a
+        href="https://wa.me/6281214147039?text=Halo%2C%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20bahan%20pakan."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="magnetic-btn group items-center gap-2.5 pl-4 pr-5 py-3 rounded-full bg-[#043e2b] text-[#faf9f5] text-xs font-bold tracking-widest uppercase transition-all duration-700 ease-spring hover:bg-[#15803d] hover:shadow-[0_8px_24px_-6px_rgba(21,128,61,0.5)] hidden md:inline-flex"
+      >
+        <svg
+          class="w-4 h-4 shrink-0 transition-transform duration-500 ease-spring group-hover:scale-110"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09 1-2.38.24-.28.53-.35.71-.35.18 0 .35 0 .5.01.16.01.38-.06.59.45.24.58.8 1.98.87 2.13.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.29.29-.12.57.16.28.73 1.2 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.32.07.11.07.65-.17 1.32z"
+          ></path>
+        </svg>
+        Hubungi Kami
+      </a>
+      <button id="mobile-burger" aria-label="Toggle menu" class="md:hidden ml-3 p-2 rounded-full bg-[#043e2b] text-[#faf9f5] shadow-lg">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu (drawer from right) -->
+<div id="mobile-menu" class="mobile-menu-overlay">
+  <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+  <aside class="mobile-menu-drawer">
+    <div class="flex items-center justify-between mb-6">
+      <a href="/" class="flex items-center space-x-3">
+        <img src="/logo/logo.png" alt="logo" class="h-9 w-auto" />
+      </a>
+      <button id="mobile-close" aria-label="Close menu" class="p-2 rounded-md hover:bg-black/5 transition-colors">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav class="flex flex-col space-y-1">
+      {
+        navLinks.map((link, index) => (
+          <a 
+            href={isHome ? link.href : `/${link.href}`} 
+            data-index={index}
+            class="mobile-menu-item text-sm font-bold tracking-wider uppercase text-[#232c28] px-4 py-3 rounded-lg transition-all duration-200 hover:bg-[#043e2b]/10"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="mt-8">
+      <a 
+        href="https://wa.me/6281214147039?text=Halo%2C%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20bahan%20." 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center justify-center w-full gap-2 px-4 py-3 rounded-full bg-[#043e2b] text-white font-bold tracking-widest uppercase text-xs transition-all duration-300 hover:bg-[#15803d] hover:shadow-[0_8px_24px_-6px_rgba(21,128,61,0.5)]"
+      >
+        Hubungi Kami
+      </a>
+    </div>
+  </aside>
+</div>
+
+<style>
+  .mobile-menu-overlay {
+    @apply fixed inset-0 z-50 hidden;
+  }
+
+  .mobile-menu-overlay.active {
+    @apply block;
+  }
+
+  .mobile-menu-backdrop {
+    @apply absolute inset-0 bg-black/40;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-backdrop {
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+
+  .mobile-menu-overlay.closing .mobile-menu-backdrop {
+    animation: fadeOut 0.3s ease-in-out forwards;
+  }
+
+  .mobile-menu-drawer {
+    @apply absolute right-0 top-0 h-full w-64 bg-white p-6 shadow-xl;
+    animation: slideInRight 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .mobile-menu-overlay.closing .mobile-menu-drawer {
+    animation: slideOutRight 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .mobile-menu-item {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item {
+    opacity: 1;
+    transform: translateX(0);
+    animation: slideInLeft 0.3s ease-out forwards;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item:nth-child(4) {
+    animation-delay: 0.25s;
+  }
+
+  .mobile-menu-overlay.active .mobile-menu-item:nth-child(5) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('mobile-burger');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-close');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+
+  function openMenu() {
+    menu?.classList.remove('hidden', 'closing');
+    // Trigger reflow to restart animations
+    menu?.offsetHeight;
+    menu?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.classList.add('closing');
+    menu?.classList.remove('active');
+    setTimeout(() => {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('closing');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  burger?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking on a link
+  const menuItems = menu?.querySelectorAll('.mobile-menu-item');
+  menuItems?.forEach(item => {
+    item.addEventListener('click', closeMenu);
+  });
+</script>

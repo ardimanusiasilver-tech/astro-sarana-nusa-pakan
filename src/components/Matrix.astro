@@ -1,0 +1,67 @@
+---
+const cards = [
+  {
+    label: "01 / Kualitas Terjamin",
+    title: "Kontrol Kualitas Ketat",
+    desc: "Setiap komponen melewati seleksi teknis dan proses kontrol kualitas yang ketat untuk menjamin standar internasional yang konsisten.",
+    offset: "lg:translate-y-0 hover:-translate-y-2",
+  },
+  {
+    label: "02 / Jaringan Global",
+    title: "Sumber Multi-Negara",
+    desc: "Struktur kami didukung oleh jaringan luas pemasok terpercaya dan pelanggan korporat di berbagai negara.",
+    offset: "lg:translate-y-12 hover:translate-y-10",
+  },
+  {
+    label: "03 / Layanan Profesional",
+    title: "Respons Cepat",
+    desc: "Menjamin respons pelanggan yang cepat dan akurat, memberikan solusi andal, serta mempertahankan orientasi layanan.",
+    offset: "lg:translate-y-0 hover:-translate-y-2",
+  },
+  {
+    label: "04 / Poros Keberlanjutan",
+    title: "Praktik Bertanggung Jawab",
+    desc: "Berkomitmen kuat pada strategi bisnis bertanggung jawab yang terstruktur untuk membina pertumbuhan industri nutrisi jangka panjang.",
+    offset: "lg:translate-y-12 hover:translate-y-10",
+  },
+];
+---
+
+<section
+  id="matrix"
+  class="relative py-32 px-8 md:px-24 bg-[#faf9f5]"
+>
+  <div class="max-w-7xl mx-auto space-y-16 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+      <div class="lg:col-span-7 space-y-3">
+        <span class="text-xs font-bold tracking-[0.3em] uppercase text-[#15803d] block">Komitmen Operasional</span>
+        <h2 class="text-4xl font-black text-[#043e2b] tracking-tighter leading-none">
+          Solusi Berorientasi Nilai, <br /><span class="font-light text-[#232c28]"
+            >Kerangka Pelaksanaan Terjamin</span
+          >
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-8">
+      {
+        cards.map((card) => (
+          <div
+            class:list={[
+              "bg-[#f2fcf5] p-8 border border-[#043e2b]/5 flex flex-col justify-between min-h-[280px] transform transition-all duration-700 ease-spring group hover:border-[#15803d]/30 hover:bg-[#e6f7eb]",
+              card.offset,
+            ]}
+          >
+            <span class="font-mono text-xs text-[#15803d] block">{card.label}</span>
+            <div class="space-y-2 mt-8">
+              <h4 class="text-lg font-bold text-[#043e2b]">{card.title}</h4>
+              <p class="text-xs text-[#232c28]/70 font-light leading-relaxed">{card.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="h-16"></div>
+  </div>
+</section>

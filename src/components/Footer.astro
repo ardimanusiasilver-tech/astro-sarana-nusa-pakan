@@ -1,0 +1,105 @@
+---
+const produkLinks = [
+  "Canola Pro 38 (A)",
+  "Canola Pro 42 (B)",
+  "Canola Pro 44 (C)",
+];
+const direktifLinks = [
+  "Kualitas Terjamin",
+  "Jaringan Global",
+  "Layanan Profesional",
+  "Kurva Keberlanjutan",
+];
+const legalLinks = [
+  "Protokol Integritas Perdagangan",
+  "Perlindungan Data Berdaulat",
+  "Kerangka Perdagangan Singapura",
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-[#043e2b] text-[#faf9f5] pt-24 pb-12 px-8 md:px-24">
+  <div
+    class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 border-b border-[#faf9f5]/10 pb-16"
+  >
+    <div class="lg:col-span-4 space-y-6">
+      <div class="flex flex-col">
+        <span
+          class="text-2xl font-black tracking-tighter text-[#faf9f5] uppercase"
+          >Sarana Nusa Pakan</span
+        >
+        <span
+          class="text-[10px] uppercase tracking-[0.25em] text-[#15803d] font-bold"
+          >Precision Feeds & Nutrition</span
+        >
+      </div>
+      <p class="text-xs text-[#faf9f5]/60 font-light max-w-xs leading-relaxed">
+        Berkomitmen menyediakan bahan pakan berkualitas tinggi melalui jaringan
+        perdagangan profesional, konsistensi standar mutlak, dan kerangka
+        layanan yang dapat dipercaya.
+      </p>
+    </div>
+
+    <div class="lg:col-span-2 space-y-4">
+      <h5 class="text-xs uppercase tracking-widest text-[#15803d] font-bold">
+        Produk
+      </h5>
+      <ul class="space-y-2 text-xs font-light text-[#faf9f5]/70">
+        {
+          produkLinks.map((label) => (
+            <li>
+              <a href="#" class="hover:text-[#faf9f5] transition-colors">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="lg:col-span-2 space-y-4">
+      <h5 class="text-xs uppercase tracking-widest text-[#15803d] font-bold">
+        Direktif
+      </h5>
+      <ul class="space-y-2 text-xs font-light text-[#faf9f5]/70">
+        {
+          direktifLinks.map((label) => (
+            <li>
+              <a href="#" class="hover:text-[#faf9f5] transition-colors">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="lg:col-span-4 space-y-4">
+      <h5 class="text-xs uppercase tracking-widest text-[#15803d] font-bold">
+        Kantor Korporat Terdaftar
+      </h5>
+      <p class="text-xs font-light text-[#faf9f5]/70 leading-relaxed">
+        Jatikarya, Kec. Jatisampurna, <br>
+        Kota Bekasi, Jawa Barat
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-[#faf9f5]/40 font-light tracking-wider gap-4"
+  >
+    <div>
+      &copy; {year} Sarana Nusa Pakan Pte. Ltd. Semua hak pasokan internasional dilindungi.
+    </div>
+    <div class="flex space-x-8">
+      {
+        legalLinks.map((label) => (
+          <a href="#" class="hover:text-[#faf9f5] transition-colors">
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>
