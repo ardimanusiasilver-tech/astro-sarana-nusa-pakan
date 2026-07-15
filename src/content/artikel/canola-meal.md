@@ -63,7 +63,6 @@ Canola (baik dalam bentuk bungkil maupun minyak) dapat dimanfaatkan secara optim
 * **Sapi** (perah dan potong)
 * **Kambing** dan **Domba**
 * **Ayam** / Unggas
-* **Babi**
 * **Ikan** / Akuakultur
 
 ---
